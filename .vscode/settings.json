@@ -1,0 +1,7 @@
+{
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs":"active",
+    // "python.analysis.extraPaths": ["/home/scratch.jiahuil_gpu/GNN/dgl_0.7/python", "/home/scratch.jiahuil_gpu/python_profiler", "/home/scratch.jiahuil_gpu/GNN/open-catalyst/tools"],
+    "python.defaultInterpreterPath": "/home/scratch.jiahuil_gpu/anaconda3/bin/python"
+
+}
