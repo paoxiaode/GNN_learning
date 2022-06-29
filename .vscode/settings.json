@@ -2,6 +2,14 @@
     "editor.bracketPairColorization.enabled": true,
     "editor.guides.bracketPairs":"active",
     "python.analysis.extraPaths": ["C:\\ProgramData\\Anaconda3\\Lib\\site-packages",],
-    "python.defaultInterpreterPath": "C:\\ProgramData\\Anaconda3\\python.exe"
+    "python.defaultInterpreterPath": "C:\\ProgramData\\Anaconda3\\python.exe",
+    "spellright.language": [
+        "en"
+    ],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext"
+    ]
 
 }
