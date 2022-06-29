@@ -86,8 +86,8 @@ def run(args, device):
     loss_fuc = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr = 0.01)
     
-    for epoch in range(args.num_epochs):
-        for iter,
+    # for epoch in range(args.num_epochs):
+    #     for iter,
         
     
     
