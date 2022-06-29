@@ -67,10 +67,15 @@ class GAT(nn.Module):
         self.layers.append(MultiHeadGATLayer(g, hidden_dim*num_heads, out_dim, 1))
         
     def forward(self, h):
+        print(h.shape)
         for layer in self.layers[:-1]:
             h = layer(h)
+            print(h.shape)
+            
             h = F.elu(h)
         h = self.layers[-1](h)
+        print(h.shape)
+        
         return h
         
 def run():
