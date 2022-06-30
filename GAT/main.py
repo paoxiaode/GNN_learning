@@ -46,8 +46,9 @@ class MultiHeadGATLayer(nn.Module):
     def __init__(self, g, in_dim, out_dim, num_heads, merge='cat'):
         super(MultiHeadGATLayer, self).__init__()
         self.heads = nn.ModuleList()
+        self.g = g
         for _ in range(num_heads):
-            self.heads.append(GATLayer(g, in_dim, out_dim))
+            self.heads.append(GATLayer(self.g, in_dim, out_dim))
         self.merge = merge
 
     def forward(self, h):
@@ -57,23 +58,29 @@ class MultiHeadGATLayer(nn.Module):
             return torch.cat(head_outs, dim=1)
         else:
             # merge using average
-            return torch.mean(torch.stack(head_outs))
+            return torch.mean(torch.stack(head_outs), dim=0)
         
 class GAT(nn.Module):
-    def __init__(self, g, in_dim, hidden_dim, out_dim, num_heads) -> None:
+    def __init__(self, g, in_dim, hidden_dim, out_dim, num_heads, num_layer=2) -> None:
         super(GAT, self).__init__()
+        self.g = g
+        self.num_layer = num_layer
         self.layers = nn.ModuleList()
-        self.layers.append(MultiHeadGATLayer(g, in_dim, hidden_dim, num_heads))
-        self.layers.append(MultiHeadGATLayer(g, hidden_dim*num_heads, out_dim, 1))
+        self.layers.append(MultiHeadGATLayer(self.g, in_dim, hidden_dim, num_heads))
+        for _ in range(1, self.num_layer):
+            self.layers.append(MultiHeadGATLayer(self.g, hidden_dim*num_heads, hidden_dim, num_heads))
+        self.layers.append(MultiHeadGATLayer(self.g, hidden_dim*num_heads, out_dim, num_heads, merge="mean"))
         
     def forward(self, h):
         # print(h.shape)
         for layer in self.layers[:-1]:
             h = layer(h)
             h = F.elu(h)
+            # print(h.shape)
+
         h = self.layers[-1](h)
         # print(h.shape)
-        
+
         return h
         
 def run():
@@ -90,7 +97,7 @@ def run():
           num nodes {num_nodes}
           num classes {num_classes}
           input feature dim {in_dim}""")
-    net = GAT(graph, in_dim, hidden_dim=8, out_dim= num_classes, num_heads=2)
+    net = GAT(graph, in_dim, hidden_dim=8, out_dim= num_classes, num_heads=2, num_layer=3)
     optimizer = torch.optim.Adam(net.parameters(), lr = 0.01)
     dur = []
     
@@ -105,7 +112,7 @@ def run():
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
-
+        # exit()
         if epoch >= 3:
             dur.append(time.time() - t0)
 
