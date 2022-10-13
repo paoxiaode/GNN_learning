@@ -8,7 +8,7 @@
 
 ## Problem Formulation
 
-There are two kinds of graph matching formulation
+Given a set of $m$ graph instances $\mathcal{G}=\{G^1,G^2,\dots,G^m\}$, we aim to learn a mapping $d:G*G\rightarrow R$, mapping $d(·, ·)$ should also maintain the basic distance metric properties, i.e., nonnegativity, identity of indiscernibles, symmetry and triangle inequality.
 
 ### Node Correspondence
 
@@ -29,16 +29,6 @@ Produce a similarity score between two graphs, usually use **GED (Graph edit dis
 
 * NP-hard
 * GNN-based methods demonstrating superiority over traditional methods
-
-Input: a pair of graph inputs $(G^1,G^2)$
-
-* $G^1=(V^1,E^1)$ with $(X^1,A^1)$, where $X^1\in R^{N*d},A^1\in R^{N*N}$
-* $G^2=(V^2,E^2)$ with $(X^2,A^2)$, where $X^2\in R^{N*d},A^2\in R^{N*N}$
-
-Output
-
-* $Y=\{-1,1\}$: graph-graph classification task
-* $Y=[0,1]$: graph-graph regression task
 
 ## Graph Similarity Learning methods
 
@@ -73,11 +63,18 @@ GB-DISTANCE (Zhang, 2020)
 
 Motivation: learn the distance metric of the graph instances, it is the foundation of many other research tasks, e.g., molecular graph clustering, brain graph classification and frequent sub-graph extraction
 
-The common disadvantage 
+#### The common disadvantage of graph match model
 
 * High computational cost: train cost will grow quadratically as graph number increases. the pair is $\frac{n(n-1)}{2}$
 * Node-Order Invariant representation
   *  learned graph instance representations and the distance metric scores will vary greatly as the input graph node order changes
+  *  ![image-20221013162044870](assets/image-20221013162044870.png)
+* Semi-supervised learning
+  * The graph-pair distance scores need to be labeled, tedious and time-consuming.
+
+* Lack of metric properties
+
+
 
 ### Cross-graph  Matching
 
