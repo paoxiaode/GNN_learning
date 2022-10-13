@@ -2,6 +2,22 @@
 
 This is a repo about GNN and DGL
 
+## GNN 入门
+
+### 代码
+
+* 安装wsl2（windows的linux子系统）
+* 配python环境+安装DGL [Deep Graph Library (dgl.ai)](https://www.dgl.ai/)
+* 读DGL里面上面三个模型的代码，跑一下example
+
+### 论文
+
+* 下载zotero
+* [A Gentle Introduction to Graph Neural Networks (distill.pub)](https://distill.pub/2021/gnn-intro/)
+
+* 综述论文：Graph Neural Networks: A Review of Methods and Applications
+* 了解GNN的基本模型：GCN (Graph convolution network), RGCN (Relational graph convolution network), GAT (Graph attention network)
+
 ## reference:
 
 ### model
