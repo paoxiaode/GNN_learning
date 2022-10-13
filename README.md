@@ -8,7 +8,7 @@ This is a repo about GNN and DGL
 
 * 安装wsl2（windows的linux子系统）
 * 配python环境+安装DGL [Deep Graph Library (dgl.ai)](https://www.dgl.ai/)
-* 读DGL里面上面三个模型的代码，跑一下example
+* 读DGL里面三个模型GCN, RGCN, GAT的代码，跑一下example
 
 ### 论文
 
