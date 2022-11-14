@@ -4,7 +4,9 @@
 
 **注：Meta Path 是一条包含relation序列的路径，而这些 relation 定义在不同类型object之间**
 
-Heterogeneous graphs (HGs) are composed of different types of entities and relations,
+Heterogeneous graphs (HGs) are composed of different types of entities and relations
+
+
 
 ## 研究现状
 
@@ -17,6 +19,18 @@ aiming to learn a function that maps input space into lower-dimensional space wh
 1. Semantic dependent graph structure, e.g., meta-path structure can be very different when considering different types of relations; （如何定义异质图）
 2. different types of nodes and edges have different attributes located in different feature spaces;（不同类型的节点和边怎么定义特征、初始化）
 3. Application dependent, need sufficient domain knowledge for meta-path/meta-graph selection
+
+<img src="./assets/image-20221109160901067.png" alt="image-20221109160901067" style="zoom:150%;" />
+
+* Shallow models
+
+* Deep models
+
+  * message-passing based
+  * encoder-decoder based
+  * adversarial based
+
+  
 
 ## Basic Concept
 
@@ -44,3 +58,8 @@ A directed acyclic graph (DAG) composed of multiple meta-paths with common nodes
 
 Heterogeneous graph embedding aims to learn a function $Φ : V → R^d$ that embeds the nodes $v ∈ V$ in HG into low-dimensional Euclidean space with $d ≪ |V |$
 
+
+
+## Message Passing-based Methods (HGNNs)
+
+### [HetGNN介绍](./HetGNN.md)
