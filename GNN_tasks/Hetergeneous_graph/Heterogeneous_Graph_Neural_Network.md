@@ -63,3 +63,5 @@ Heterogeneous graph embedding aims to learn a function $Φ : V → R^d$ that emb
 ## Message Passing-based Methods (HGNNs)
 
 ### [HetGNN介绍](./HetGNN.md)
+
+### [HAN介绍](./HAN.md)

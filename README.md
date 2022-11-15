@@ -18,6 +18,23 @@ This is a repo about GNN and DGL
 * 综述论文：Graph Neural Networks: A Review of Methods and Applications
 * 了解GNN的基本模型：GCN (Graph convolution network), RGCN (Relational graph convolution network), GAT (Graph attention network)
 
+
+
+## 文献调研
+
+总结整合了GNN目前的主流研究方向
+
+汇总目前GNN比较热门的研究方向
+
+* [Graph Generation & Transformation](./GNN_tasks/Graph_gen/Graph_gen.md)
+* [Dynamic Graph](./GNN_tasks/Graph_dynamic/Graph_dynamic.md)
+* **[Graph Matching](./GNN_tasks/Graph_match/Graph_match.md)**
+* [GNN sample methods](./GNN_tasks/GNN_sample_diag/GNN_sample_paradigms.md)
+* **[Hetergeneous graph](./GNN_tasks/Hetergeneous_graph/Heterogeneous_Graph_Neural_Network.md)**
+* [Link prediction](./GNN_tasks/Link_pre/Link_prediction_in_GNN.md)
+
+
+
 ## reference:
 
 ### model
@@ -42,9 +59,13 @@ TGN (temporal graph network)
 
 * [twitter-research/tgn: TGN: Temporal Graph Networks (github.com)](https://github.com/twitter-research/tgn)
 
+
+
 ### DGL 
 
 [build-in function in DGL](https://docs.dgl.ai/api/python/dgl.function.html)
+
+
 
 
 ## Notebooks:
