@@ -94,3 +94,59 @@ consider $A_{i,j}=\{0,1\}$
 [Variational Autoencoder（变分自编码 VAE，CVAE）](https://blog.csdn.net/qq_39388410/article/details/79129197)
 
 ![image-20221031221005696](./assets/image-20221031221005696.png)
+
+### 代码细节
+
+**examples/pytorch/vgae/train.py**
+
+```python
+def encoder(self, g, features):
+        h = self.layers[0](g, features)
+        self.mean = self.layers[1](g, h)
+        self.log_std = self.layers[2](g, h)
+        gaussian_noise = torch.randn(features.size(0), self.hidden2_dim).to(device)
+        sampled_z = self.mean + gaussian_noise * torch.exp(self.log_std).to(device)
+        return sampled_z
+
+def decoder(self, z):
+    adj_rec = torch.sigmoid(torch.matmul(z, z.t()))
+    return adj_rec
+
+def forward(self, g, features):
+    z = self.encoder(g, features)
+    adj_rec = self.decoder(z)
+    return adj_rec
+```
+
+![image-20221101210508712](./assets/image-20221101210508712.png)
+
+
+
+### Variants of GAE and VGAE
+
+* replace the GCN used in GAE/VGAE with any GNN
+* replace the inner product with any aggregation function over $\{z_i , z_j\}$ and feed the aggregated link representation to an MLP to predict the link $(i, j)$.
+
+HGCN combines hyperbolic graph convolutional neural networks with a Fermi-Dirac decoder for aggregating pairwise node embeddings and outputting link probabilities
+
+![image-20221101211559122](./assets/image-20221101211559122.png)
+
+## Subgraph-Based
+
+### SEAL
+
+![image-20221102094711917](./assets/image-20221102094711917.png)
+
+1. **Enclosing subgraph**
+
+   Given a set of nodes $S$
+   $$
+   \cup_{j\in S}\{i|d(i,j)\leq h\}
+   $$
+   the $h$-hop enclosing subgraph around a node set $S$ contains nodes within $h$ hops of any node in $S$
+
+2. **Node labeling**
+
+   SEAL applies a Double Radius Node Labeling (DRNL) to give an integer label to each node in the subgraph as its additional feature
+
+![image-20221102100927816](./assets/image-20221102100927816.png)
