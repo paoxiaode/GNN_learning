@@ -1,5 +1,5 @@
 # HetGNN
-
+REF: http://arxiv.org/abs/2003.01332
 ## Motivation
 
 <img src="./assets/image-20221110102524344.png" alt="image-20221110102524344" style="zoom: 67%;" />

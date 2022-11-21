@@ -1,4 +1,5 @@
 # Heterogeneous Graph Attention Network
+REF: http://arxiv.org/abs/1903.07293
 
 propose a novel heterogeneous graph neural network based on the hierarchical attention, including **node-level and semantic-level attentions**.
 
