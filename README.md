@@ -39,7 +39,7 @@ This is a repo about GNN and DGL
 
 ### recently read paper
 
-[UNDERSTANDING GNN COMPUTATIONAL GRAPH]()
+[UNDERSTANDING GNN COMPUTATIONAL GRAPH](GNN_optimize/understanc_GNN_graph.md)
 
 ### model
 GCN (Graph convolutional network)
