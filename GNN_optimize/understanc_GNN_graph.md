@@ -36,7 +36,7 @@ Intermediate data recomputation: forward时不保存intermediate data
 
 ![image-20230506135804918](./assets/image-20230506135804918.png)
 
-## propagation postponed reorganization
+## propagation postponed reorganization： reduce compute
 
 原始的GAT在edge上做linear，会造成很多冗余的计算
 
@@ -79,3 +79,44 @@ e_u^r&=a_r^T h_u\\
 $$
 total $4|V|f+2|E|$
 
+## Unified thread mapping: reduce IO
+
+![image-20230508170230992](./assets/image-20230508170230992-1683536889776-4.png)
+
+diverged thread-mapping in diff op
+
+* edge centric op
+* node centric op
+
+different thread-mapping schemes
+
+* vertex-balanced
+* edge-balanced
+
+比方说在Gather操作下使用edge balance策略，需要使用原子操作
+
+![image-20230508170729944](./assets/image-20230508170729944-1683536884496-2.png)
+
+### Approach
+
+fuse all graph-related operators with unified thread mapping， 对于所有的op采用相同的thread mapping策略
+
+## Intermediate data recomputed: reduce memory
+
+Eg:
+
+![image-20230508171249935](./assets/image-20230508171249935.png)
+
+对于一个scatter+gather操作，在前向时如果把它fuse成一个kernel，就能把O(|E|) 的数据存在on-chip mem而非off-chip mem，但由于我们在后向中需要这个数据，我们又只能将其在off chip mem中保存。
+
+### Insight
+
+if the intermediate data is memory consuming but light weight to compute, we can recompute those needed intermediate data during backward
+
+### Approach
+
+fuse+recompute
+
+fuse: reduce the data movement and launch overhead
+
+recompute: reduce the memory consumption
